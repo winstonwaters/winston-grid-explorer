@@ -2,28 +2,28 @@
 'use strict';
 
 var DirectionModel = require('./model/directionmodel');
-// var PlayerModel = require('./model/playermodel');
+var PlayerModel = require('./model/playermodel');
 var DirectionView = require('./view/directionview');
-// var PlayerView = require('./view/playerview');
+var PlayerView = require('./view/playerview');
 
 window.addEventListener('load', function () {
 
   //Models
   var dmodel = new DirectionModel();
-  // let pmodel = new PlayerModel();
+  var pmodel = new PlayerModel();
 
   //Views
-  // let player = new PlayerView({
-  //   model: pmodel,
-  //   el: document.getElementById('player-view'),
-  // });
+  var player = new PlayerView({
+    model: pmodel,
+    el: document.getElementById('player-view')
+  });
 
   var direction = new DirectionView({
     model: dmodel,
     el: document.getElementById('direction-view')
   });
 });
-},{"./model/directionmodel":2,"./view/directionview":3}],2:[function(require,module,exports){
+},{"./model/directionmodel":2,"./model/playermodel":3,"./view/directionview":4,"./view/playerview":5}],2:[function(require,module,exports){
 module.exports = Backbone.Model.extend({
   defaults:{
     xvalue: 0,
@@ -57,6 +57,18 @@ module.exports = Backbone.Model.extend({
 });
 
 },{}],3:[function(require,module,exports){
+module.exports = Backbone.Model.extend({
+
+  defaults: {
+    username: '',
+  },
+  //start
+  start: function(input) {
+    this.set('username', input);
+  }
+});
+
+},{}],4:[function(require,module,exports){
 module.exports = Backbone.View.extend({
 
     initialize: function () {
@@ -98,6 +110,36 @@ module.exports = Backbone.View.extend({
     let buttonUp = this.el.querySelector('#yAxis');
     buttonUp.textContent = this.model.get('yvalue');
   }
+
+
+});
+
+},{}],5:[function(require,module,exports){
+module.exports = Backbone.View.extend({
+
+  initialize: function () {
+    this.model.on('change', this.render, this);
+  },
+
+
+  events: {
+    //event name selector : function to call
+    'click #start' : 'clickStart',
+  },
+
+  clickStart: function(){
+    let input = document.getElementById('input');
+    console.log(input.value)
+    this.model.start(input.value);
+
+  },
+
+  render: function() {
+      let input = document.getElementById('input');
+      input.style.background = "lightblue";
+      input.style.color = "white";
+  },
+
 
 
 });
