@@ -1,2 +1,65 @@
 body {
-  background-color: lightblue; }
+  background-color: lightblue;
+  font: Gotham; }
+
+#player-view {
+  width: 100%;
+  margin: 0 auto; }
+  #player-view #player-name {
+    text-align: center; }
+
+#ul {
+  font-family: Gotham;
+  color: white;
+  text-align: center; }
+
+#keys {
+  text-align: center; }
+
+#xAxis {
+  margin-top: 1% auto;
+  display: inline-block;
+  text-align: center;
+  color: white;
+  font-family: Gotham; }
+
+#yAxis {
+  margin-top: 1% auto;
+  display: inline-block;
+  text-align: center;
+  color: white;
+  font-family: Gotham; }
+
+#canvas {
+  background-color: white;
+  margin-bottom: 2em;
+  border-radius: 3px;
+  border-style: outset; }
+
+#input {
+  border-radius: 3px;
+  padding: 2%;
+  font-family: Gotham;
+  border-style: inset; }
+
+#start {
+  border-radius: 3px;
+  padding: 2%;
+  font-family: Gotham;
+  background-color: white; }
+
+button {
+  margin: 2% auto;
+  float: inherit;
+  display: inline-block; }
+
+#xAxis {
+  display: block; }
+
+#yAxis {
+  display: block; }
+
+#canvas {
+  margin: 0 auto;
+  width: 50%;
+  display: block; }

@@ -11,30 +11,26 @@
    <section id="player-view">
      <div id="player-name">
       <input id="input" value="Player Name" />
-    </div>
-     <button id="start">Start</button>
+     <!-- thank you logan for the href -->
+     <button id="start" onclick="location.href = '#MainGame'">Start</button>
+   </div>
    </section>
 
-
    <section id="direction-view">
-     <div id="x">0</div>
-     <div id="y">0</div>
+     <ul id="ul"></ul>
+
+     <canvas id='canvas'></canvas>
+
+     <div id="yAxis"> </div>
+     <div id="xAxis"></div>
+     <div id="keys">
      <button id="up">up</button>
-     <div id="yAxis">
-       -
-     </div>
      <button id="down">down</button>
-     <div id="yAxis">
-       -
-     </div>
      <button id="left">left</button>
-     <div id="xAxis">
-       -
-     </div>
      <button id="right">right</button>
-     <div id="xAxis">
-       -
      </div>
+
+
    </section>
 
 

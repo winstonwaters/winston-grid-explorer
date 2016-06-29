@@ -14,7 +14,6 @@ module.exports = Backbone.View.extend({
 
   clickUp: function () {
     this.model.up();
-    console.log('you clicked up');
   },
 
   clickDown: function () {

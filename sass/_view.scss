@@ -1,0 +1,39 @@
+#canvas {
+  background-color: white;
+  margin-bottom: 2em;
+  border-radius: 3px;
+  border-style: outset;
+}
+
+#input {
+  border-radius: 3px;
+  padding: 2%;
+  font-family: Gotham;
+  border-style: inset;
+}
+#start {
+  border-radius: 3px;
+  padding: 2%;
+  font-family: Gotham;
+  background-color: white;
+}
+
+button {
+  margin: 2% auto;
+  float: inherit;
+  display: inline-block;
+}
+
+#xAxis {
+  display: block;
+}
+
+#yAxis {
+  display: block;
+}
+
+#canvas {
+  margin: 0 auto;
+  width: 50%;
+  display: block;
+}
