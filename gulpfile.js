@@ -6,10 +6,11 @@ var watch = require('gulp-watch');
 var babel = require('gulp-babel');
 var minify = require('gulp-minify');
 var browserify = require('gulp-browserify');
+var server = require('gulp-server-livereload');
 
 
 //Specify Dependencies
-gulp.task('default', ['html', 'css', 'js','vendor']);
+gulp.task('default', ['html', 'css', 'js', 'webserver', 'vendor']);
 
 //html
 gulp.task('html', function(){
@@ -32,6 +33,17 @@ gulp.task('js', function(){
    }))
    .pipe(browserify())
    .pipe(gulp.dest('./public/js'));
+});
+
+
+//webserver
+gulp.task('webserver', () => {
+  gulp.src('./public')
+   .pipe(server({
+     livereload: true,
+     directoryListing: true,
+     open: true
+   }))
 });
 
 

@@ -14,20 +14,21 @@ body {
   text-align: center; }
 
 #keys {
+  margin: 4px;
   text-align: center; }
 
 #xAxis {
   margin-top: 1% auto;
   display: inline-block;
   text-align: center;
-  color: white;
+  color: black;
   font-family: Gotham; }
 
 #yAxis {
   margin-top: 1% auto;
   display: inline-block;
   text-align: center;
-  color: white;
+  color: black;
   font-family: Gotham; }
 
 #canvas {
@@ -48,6 +49,18 @@ body {
   font-family: Gotham;
   background-color: white; }
 
+#big {
+  border-radius: 3px;
+  padding: 2%;
+  font-family: Gotham;
+  background-color: white; }
+
+#small {
+  border-radius: 3px;
+  padding: 2%;
+  font-family: Gotham;
+  background-color: white; }
+
 button {
   margin: 2% auto;
   float: inherit;
@@ -63,3 +76,12 @@ button {
   margin: 0 auto;
   width: 50%;
   display: block; }
+
+#end-view #restart {
+  margin-left: 48%;
+  justify-content: center;
+  float: inherit;
+  display: inline-block; }
+
+.hidden {
+  display: none; }

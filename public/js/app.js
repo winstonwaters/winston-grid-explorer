@@ -15,20 +15,35 @@ module.exports = Backbone.Model.extend({
     yvalue: 0,
     username: '',
     energy: 100,
+    size: '',
   },
 
   //start
   start: function(input) {
-    this.set('username', input);
+    this.set('username',input);
+    if (this.get('size') === ('big')){
+      this.set('energy',150);
+    }
+   else if(this.get('size')===('small')){
+     this.set('energy',100);
+   }
+   console.log(this.get('energy'));
+  },
+
+  size: function(size) {
+    console.log("model size", size);
+    this.set('size', size);
   },
 
 
   up: function() {
    if (this.get('yvalue') < 10 && this.get('size')==='big') {
    this.set('yvalue', this.get('yvalue') + 1);
+   this.set('energy', this.get('energy') - 5);
    }
    else if (this.get('yvalue') < 10 && this.get('size') === 'small'){
    this.set('yvalue', this.get('yvalue') + 2);
+   this.set('energy', this.get('energy') - 10);
    }
  },
 
@@ -36,9 +51,11 @@ module.exports = Backbone.Model.extend({
 down: function() {
    if (this.get('yvalue') > - 10 && this.get('size')==='big') {
    this.set('yvalue', this.get('yvalue') - 1);
+   this.set('energy', this.get('energy') - 5);
    }
    else if (this.get('yvalue') > - 10 && this.get('size') === 'small'){
    this.set('yvalue', this.get('yvalue') - 2);
+   this.set('energy', this.get('energy') - 10);
    }
  },
 
@@ -46,19 +63,24 @@ down: function() {
 left: function() {
    if (this.get('xvalue') > - 10 && this.get('size')==='big') {
    this.set('xvalue', this.get('xvalue') - 1);
+   this.set('energy', this.get('energy') - 5);
    }
    else if (this.get('xvalue') > - 10 && this.get('size') === 'small'){
    this.set('xvalue', this.get('xvalue') - 2);
+   this.set('energy', this.get('energy') - 10);
    }
  },
+
 
 
 right: function() {
    if (this.get('xvalue') < 10 && this.get('size')==='big') {
    this.set('xvalue', this.get('xvalue') + 1);
+   this.set('energy', this.get('energy') - 5);
    }
    else if (this.get('xvalue') < 10 && this.get('size') === 'small'){
    this.set('xvalue', this.get('xvalue') + 2);
+   this.set('energy', this.get('energy') - 10);
    }
  },
 
@@ -122,6 +144,7 @@ module.exports = Backbone.View.extend({
   },
 
   clickUp: function () {
+    console.log('hey up1');
     this.model.up();
   },
 
@@ -162,6 +185,18 @@ module.exports = Backbone.View.extend({
   events: {
     //event name selector : function to call
     'click #start' : 'clickStart',
+    'click #input' : 'clickInput',
+    'click #big' : 'clickBig',
+    'click #small' : 'clickSmall',
+  },
+
+  clickBig: function () {
+    console.log('view click size please big')
+    this.model.size('big');
+  },
+
+  clickSmall: function () {
+    this.model.size('small');
   },
 
   clickStart: function(){
@@ -170,12 +205,23 @@ module.exports = Backbone.View.extend({
 
   },
 
+  clickInput: function(){
+    let input = document.getElementById('input')
+    input.addEventListener('click',function(){
+      input.value = ""
+    })
+  },
+
   render: function() {
       let view = document.getElementById('ul');
       let name = this.model.get("username");
       view.innerHTML = name;
       input.style.background = "lightblue";
       input.style.color = "white";
+      let size = this.model.get('size');
+      console.log(size);
+      // document.getElementById(size).style.background = 'lightgray';
+
   },
 
 });

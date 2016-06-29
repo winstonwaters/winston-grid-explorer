@@ -13,14 +13,14 @@
       <input id="input" value="Player Name" />
      <!-- thank you logan for the href -->
      <button id="start" onclick="location.href = '#MainGame'">Start</button>
+     <button id="small">Small</button>
+     <button id="big">Big</button>
    </div>
    </section>
 
    <section id="direction-view">
      <ul id="ul"></ul>
-
      <canvas id='canvas'></canvas>
-
      <div id="yAxis"> </div>
      <div id="xAxis"></div>
      <div id="keys">
@@ -29,8 +29,11 @@
      <button id="left">left</button>
      <button id="right">right</button>
      </div>
+   </section>
 
-
+   <section id="end-view" class="hidden">
+     <h2>Game Over</h2>
+     <button id="restart">Restart</button>
    </section>
 
 

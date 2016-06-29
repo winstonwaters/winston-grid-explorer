@@ -13,6 +13,7 @@ module.exports = Backbone.View.extend({
   },
 
   clickUp: function () {
+    console.log('hey up1');
     this.model.up();
   },
 
