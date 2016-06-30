@@ -8,8 +8,8 @@ module.exports = Backbone.View.extend({
   },
 
   clickRestart: function() {
-    console.log('restart');
-      this.model.restart();
+    console.log(this);
+    window.location.href = '#/MainGame';
   },
   render: function(){
 

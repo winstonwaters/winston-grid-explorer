@@ -245,8 +245,8 @@ module.exports = Backbone.View.extend({
   },
 
   clickRestart: function() {
-    console.log('restart');
-      this.model.restart();
+    console.log(this);
+    window.location.href = '#/MainGame';
   },
   render: function(){
 
@@ -297,8 +297,6 @@ module.exports = Backbone.View.extend({
       view.innerHTML = name;
       let size = this.model.get('size');
       console.log(size);
-      // document.getElementById(size).style.background = 'lightgray';
-
   },
 
 });

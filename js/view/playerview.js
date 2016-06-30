@@ -41,8 +41,6 @@ module.exports = Backbone.View.extend({
       view.innerHTML = name;
       let size = this.model.get('size');
       console.log(size);
-      // document.getElementById(size).style.background = 'lightgray';
-
   },
 
 });
