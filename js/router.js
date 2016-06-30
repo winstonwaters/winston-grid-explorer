@@ -1,4 +1,6 @@
+//one model
 var DirectionModel = require('./model/directionmodel');
+var HighscoreCollection = require('./collections/highscore.collection.js');
 //three views
 var DirectionView = require('./view/directionview');
 var PlayerView = require('./view/playerview');
@@ -9,6 +11,14 @@ module.exports = Backbone.Router.extend({
  initialize: function() {
       //Models
       let dmodel = new DirectionModel();
+
+      //collection
+      // let highscores = new HighscoreCollection();
+      //
+      // this.highscorescollection = highscores.fetch().then(function(data){
+      //   return data;
+      // });
+      // console.log(this.highscorescollection);
 
       //Views
       this.player = new PlayerView({

@@ -1,4 +1,10 @@
+let HighScoreCollection = require('../collections/highscore.collection');
+
 module.exports = Backbone.Model.extend({
+  initialize: function () {
+    this.highscores = new HighScoreCollection();
+  },
+
   defaults:{
     xvalue: 0,
     yvalue: 0,
@@ -30,6 +36,9 @@ module.exports = Backbone.Model.extend({
   gameover: function(){
     if(this.get('energy') < 0) {
       console.log('die');
+      /// todo: this isn't the best because there are lots of places
+      // where 'playerdied' happens.
+      this.getHighScores();
       this.trigger('playerdied')
     }
   },
@@ -97,6 +106,14 @@ right: function() {
      console.log('player is dying');
      this.trigger('playerdied')
    }
+ },
+
+ getHighScores: function () {
+   this.highscores.fetch({
+     success: function() {
+       this.highscores.trigger('available');
+     },
+   });
  },
 
 

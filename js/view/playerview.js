@@ -25,6 +25,7 @@ module.exports = Backbone.View.extend({
   clickStart: function(){
     let input = document.getElementById('input');
     this.model.start(input.value);
+    console.log(this.model);
     this.trigger('startgame')
   },
 

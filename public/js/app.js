@@ -1,4 +1,17 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+
+module.exports = Backbone.Collection.extend({
+  url: 'http://grid.queencityiron.com/api/highscore',
+
+  model: {
+    name: '',
+    score: '',
+    playerType: '',
+  },
+
+});
+
+},{}],2:[function(require,module,exports){
 'use strict';
 
 var MyRouter = require('./router');
@@ -8,8 +21,14 @@ window.addEventListener('load', function () {
   var GameRouter = new MyRouter();
   Backbone.history.start();
 });
-},{"./router":3}],2:[function(require,module,exports){
+},{"./router":4}],3:[function(require,module,exports){
+let HighScoreCollection = require('../collections/highscore.collection');
+
 module.exports = Backbone.Model.extend({
+  initialize: function () {
+    this.highscores = new HighScoreCollection();
+  },
+
   defaults:{
     xvalue: 0,
     yvalue: 0,
@@ -41,6 +60,9 @@ module.exports = Backbone.Model.extend({
   gameover: function(){
     if(this.get('energy') < 0) {
       console.log('die');
+      /// todo: this isn't the best because there are lots of places
+      // where 'playerdied' happens.
+      this.getHighScores();
       this.trigger('playerdied')
     }
   },
@@ -110,11 +132,21 @@ right: function() {
    }
  },
 
+ getHighScores: function () {
+   this.highscores.fetch({
+     success: function() {
+       this.highscores.trigger('available');
+     },
+   });
+ },
+
 
 });
 
-},{}],3:[function(require,module,exports){
+},{"../collections/highscore.collection":1}],4:[function(require,module,exports){
+//one model
 var DirectionModel = require('./model/directionmodel');
+var HighscoreCollection = require('./collections/highscore.collection.js');
 //three views
 var DirectionView = require('./view/directionview');
 var PlayerView = require('./view/playerview');
@@ -125,6 +157,14 @@ module.exports = Backbone.Router.extend({
  initialize: function() {
       //Models
       let dmodel = new DirectionModel();
+
+      //collection
+      // let highscores = new HighscoreCollection();
+      //
+      // this.highscorescollection = highscores.fetch().then(function(data){
+      //   return data;
+      // });
+      // console.log(this.highscorescollection);
 
       //Views
       this.player = new PlayerView({
@@ -191,7 +231,7 @@ restart: function(){
 
 });
 
-},{"./model/directionmodel":2,"./view/directionview":4,"./view/endview":5,"./view/playerview":6}],4:[function(require,module,exports){
+},{"./collections/highscore.collection.js":1,"./model/directionmodel":3,"./view/directionview":5,"./view/endview":6,"./view/playerview":7}],5:[function(require,module,exports){
 module.exports = Backbone.View.extend({
 
     initialize: function () {
@@ -234,11 +274,13 @@ module.exports = Backbone.View.extend({
 
 });
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 module.exports = Backbone.View.extend({
   initialize: function() {
-    this.model.on('change', this.render, this);
+    // this.model.on('changed', this.render, this);
+    this.model.highscores.on('available', this.render, this);
   },
+
   events: {
     'click #restart': 'clickRestart',
     'gameOver': 'theEnd',
@@ -249,11 +291,12 @@ module.exports = Backbone.View.extend({
     window.location.href = '#/MainGame';
   },
   render: function(){
-
+    console.log('rendering');
+    console.log(this.model.highscores);
   }
 });
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 module.exports = Backbone.View.extend({
 
   initialize: function () {
@@ -281,6 +324,7 @@ module.exports = Backbone.View.extend({
   clickStart: function(){
     let input = document.getElementById('input');
     this.model.start(input.value);
+    console.log(this.model);
     this.trigger('startgame')
   },
 
@@ -301,4 +345,4 @@ module.exports = Backbone.View.extend({
 
 });
 
-},{}]},{},[1])
+},{}]},{},[2])
