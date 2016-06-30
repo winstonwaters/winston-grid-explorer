@@ -1,9 +1,10 @@
-module.explorts = Backbone.View.extend({
+module.exports = Backbone.View.extend({
   initialize: function() {
     this.model.on('change', this.render, this);
   },
   events: {
     'click #restart': 'clickRestart',
+    'gameOver': 'theEnd',
   },
 
   clickRestart: function() {
@@ -11,6 +12,6 @@ module.explorts = Backbone.View.extend({
       this.model.restart();
   },
   render: function(){
-    
+
   }
 });

@@ -25,7 +25,7 @@ module.exports = Backbone.View.extend({
   clickStart: function(){
     let input = document.getElementById('input');
     this.model.start(input.value);
-
+    this.trigger('startgame')
   },
 
   clickInput: function(){
@@ -39,8 +39,6 @@ module.exports = Backbone.View.extend({
       let view = document.getElementById('ul');
       let name = this.model.get("username");
       view.innerHTML = name;
-      input.style.background = "lightblue";
-      input.style.color = "white";
       let size = this.model.get('size');
       console.log(size);
       // document.getElementById(size).style.background = 'lightgray';

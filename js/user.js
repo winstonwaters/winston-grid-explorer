@@ -1,5 +1,5 @@
 module.exports = Backbone.Model.extend({
-  url: ,
+  url: 'http://grid.queencityiron.com/api/players',
 
   defaults: {
     name: '',

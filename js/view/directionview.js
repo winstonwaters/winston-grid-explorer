@@ -33,9 +33,6 @@ module.exports = Backbone.View.extend({
     let buttonRight = this.el.querySelector('#xAxis');
     buttonRight.textContent = this.model.get('xvalue');
 
-    let buttonLeft = this.el.querySelector('#xAxis');
-    buttonLeft.textContent = this.model.get('xvalue');
-
     let buttonUp = this.el.querySelector('#yAxis');
     buttonUp.textContent = this.model.get('yvalue');
   }

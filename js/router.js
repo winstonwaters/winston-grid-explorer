@@ -1,6 +1,8 @@
 var DirectionModel = require('./model/directionmodel');
+//three views
 var DirectionView = require('./view/directionview');
 var PlayerView = require('./view/playerview');
+var EndView = require('./view/endview');
 
 
 module.exports = Backbone.Router.extend({
@@ -18,22 +20,57 @@ module.exports = Backbone.Router.extend({
           model: dmodel,
           el: document.getElementById('direction-view')
       });
+
+      this.end = new EndView({
+          model: dmodel,
+          el: document.getElementById('end-view')
+      });
+
+      dmodel.on('playerdied', function(){
+        console.log(this.navigate);
+        this.navigate('EndGame', { trigger : true })
+      },this)
+
+      this.player.on('startgame', function(){
+        console.log(this.navigate);
+        this.navigate('playGame', { trigger : true })
+      },this)
  },
  routes: {
     "MainGame": "mainGame",
+    "playGame": "playGame",
+    "EndGame": "endGame",
     "restart": "restart",
-    " ": "restart",
+    '' : 'mainGame',
  },
 
 mainGame: function(){
   console.log('main game starting')
+  this.player.el.classList.remove('hidden');
+  this.direction.el.classList.add('hidden');
+  this.end.el.classList.add('hidden');
+},
+
+playGame: function(){
+  console.log('play game starting')
   this.player.el.classList.add('hidden');
   this.direction.el.classList.remove('hidden');
+  this.end.el.classList.add('hidden');
 },
+
+endGame: function(){
+  console.log('end game starting')
+  this.player.el.classList.add('hidden');
+  this.direction.el.classList.add('hidden');
+  this.end.el.classList.remove('hidden');
+},
+
+
+
 restart: function(){
   console.log('hello restart')
-  this.direction.el.classList.add('hidden')
-  this.player.el.classList.remove('hidden')
+  this.player.el.classList.remove('hidden');
+  this.direction.el.classList.add('hidden');
 }
 
 });
