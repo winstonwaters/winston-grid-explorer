@@ -29,12 +29,34 @@ module.exports = Backbone.View.extend({
     this.model.right();
   },
 
+
+  //dynamically appending grid to play in the DOM
+  makeGrid: function () {
+    let myGrid = document.getElementById('grid')
+    myGrid.innerHTML = '';
+    console.log('making grid');
+    let playerPosition = [5,7]
+    let size = 10;
+    for(var y = 0; y < size; y++){
+      let row = document.createElement('div');
+      row.classList.add('row');
+      for(let x = 0; x < size; x++) {
+        let cell = document.createElement('div');
+        cell.classList.add('cell');
+        row.appendChild(cell);
+      }
+      myGrid.appendChild(row);
+    }
+   },
+
   render: function () {
     let buttonRight = this.el.querySelector('#xAxis');
     buttonRight.textContent = this.model.get('xvalue');
 
     let buttonUp = this.el.querySelector('#yAxis');
     buttonUp.textContent = this.model.get('yvalue');
+
+    this.makeGrid();
   }
 
 

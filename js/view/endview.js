@@ -11,7 +11,7 @@ module.exports = Backbone.View.extend({
 
   clickRestart: function() {
     console.log(this);
-    window.location.href = '#/MainGame';
+    window.location.href = '/#MainGame';
   },
   render: function(){
     console.log('rendering');

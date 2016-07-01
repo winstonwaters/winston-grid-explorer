@@ -44,8 +44,24 @@ button {
   display: block;
 }
 
-#canvas {
+#grid {
   margin: 0 auto;
-  width: 50%;
-  display: block;
+  text-align: center;
+}
+
+.row {
+  width: 2em;
+  height: 2em;
+  margin: 0;
+  display: inline-block;
+  border: 1px solid white;
+
+}
+.cell {
+  width: 2em;
+  height: 2em;
+  margin: 0;
+  display: inline-block;
+  border: 1px solid white;
+
 }

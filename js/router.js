@@ -12,7 +12,10 @@ module.exports = Backbone.Router.extend({
       //Models
       let dmodel = new DirectionModel();
 
-      //collection
+      // let highscores = new HighscoreCollection();
+      // highscores.fetch();
+
+      // collection
       // let highscores = new HighscoreCollection();
       //
       // this.highscorescollection = highscores.fetch().then(function(data){
@@ -81,6 +84,7 @@ restart: function(){
   console.log('hello restart')
   this.player.el.classList.remove('hidden');
   this.direction.el.classList.add('hidden');
+  this.end.el.classList.add('hidden');
 }
 
 });
