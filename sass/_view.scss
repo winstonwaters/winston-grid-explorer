@@ -36,15 +36,15 @@ button {
   display: inline-block;
 }
 
-#xAxis {
-  display: block;
+.numbers{
+  text-align: center;
+  color: white;
+  margin: 2em;
 }
 
-#yAxis {
-  display: block;
-}
 
 #grid {
+  line-height: 0;
   margin: 0 auto;
   text-align: center;
 }

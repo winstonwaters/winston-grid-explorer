@@ -31,6 +31,9 @@ body {
   color: black;
   font-family: Gotham; }
 
+#player {
+  background-color: lightgray; }
+
 #canvas {
   background-color: white;
   margin-bottom: 2em;
@@ -66,13 +69,13 @@ button {
   float: inherit;
   display: inline-block; }
 
-#xAxis {
-  display: block; }
-
-#yAxis {
-  display: block; }
+.numbers {
+  text-align: center;
+  color: white;
+  margin: 2em; }
 
 #grid {
+  line-height: 0;
   margin: 0 auto;
   text-align: center; }
 

@@ -9,7 +9,7 @@ module.exports = Backbone.Model.extend({
     xvalue: 0,
     yvalue: 0,
     username: '',
-    energy: 100,
+    energy: 50,
     size: '',
     amountToMove: 0,
     energyPerMove: 0,
@@ -61,11 +61,11 @@ module.exports = Backbone.Model.extend({
 
 
 down: function() {
-   if (this.get('yvalue') > 1 && this.get('size')==='big') {
+   if (this.get('yvalue') > - 10 && this.get('size')==='big') {
    this.set('yvalue', this.get('yvalue') - 1);
    this.set('energy', this.get('energy') - 5);
    }
-   else if (this.get('yvalue') > 1 && this.get('size') === 'small'){
+   else if (this.get('yvalue') > - 10 && this.get('size') === 'small'){
    this.set('yvalue', this.get('yvalue') - 2);
    this.set('energy', this.get('energy') - 10);
    }
@@ -77,11 +77,11 @@ down: function() {
 
 
 left: function() {
-   if (this.get('xvalue') > 1 && this.get('size')==='big') {
+   if (this.get('xvalue') > - 10 && this.get('size')==='big') {
    this.set('xvalue', this.get('xvalue') - 1);
    this.set('energy', this.get('energy') - 5);
    }
-   else if (this.get('xvalue') > 1 && this.get('size') === 'small'){
+   else if (this.get('xvalue') > - 10 && this.get('size') === 'small'){
    this.set('xvalue', this.get('xvalue') - 2);
    this.set('energy', this.get('energy') - 10);
    }
@@ -105,6 +105,14 @@ right: function() {
    if (this.gameover()){
      console.log('player is dying');
      this.trigger('playerdied')
+   }
+ },
+
+ consumeEnergy: function(){
+   if(this.get('energy') <= 0){
+     console.log('ya died');
+     this.trigger('playerdied')
+     this.save();
    }
  },
 

@@ -44,6 +44,9 @@ module.exports = Backbone.View.extend({
         let cell = document.createElement('div');
         cell.classList.add('cell');
         row.appendChild(cell);
+        if(this.model.get('xvalue') === y && this.model.get('yvalue') === x){
+          cell.setAttribute('id', 'player');
+        }
       }
       myGrid.appendChild(row);
     }
